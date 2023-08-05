@@ -12,6 +12,8 @@ COPY ./requirements.txt requirements.txt
 # Install required packages
 RUN pip install -r requirements.txt
 
+RUN pip install accelerate
+
 COPY . /app
 
 # Make port 8000 available to the world outside this container

@@ -4,6 +4,7 @@ from PIL import Image, ImageDraw
 import torch
 from diffusers import StableDiffusionPipeline
 import base64
+from pydantic import BaseModel
 
 
 app = FastAPI()
@@ -36,6 +37,9 @@ class MockModel:
 
 model = MockModel()
 model.load()
+
+class InferRequest(BaseModel):
+    text: str
 
 
 @app.get("/v2")
