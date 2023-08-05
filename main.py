@@ -79,10 +79,11 @@ def unload_model():
 
 @app.post("/v2/models/stable-diffusion/versions/1/infer")
 @app.post("/v2/models/stable-diffusion/infer")
-def generate_image(text: str):
+def generate_image(request: InferRequest):
     if not model.loaded:
         raise HTTPException(status_code=400, detail="Model is not loaded")
 
+    text = request.text
     image = model.infer(text)
     buffered = BytesIO()
     image.save(buffered, format="JPEG")
