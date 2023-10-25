@@ -39,7 +39,7 @@ model.load()
 
 
 @app.get("/v2")
-def health_check():
+def version():
     return {"model-name": "stable-diffusion"}
 
 
@@ -49,7 +49,7 @@ def health_check():
 
 
 @app.get("/v2/health/ready")
-def health_check():
+def health_ready():
     return {"status": "running"}
 
 

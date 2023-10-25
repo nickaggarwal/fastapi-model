@@ -11,7 +11,7 @@ COPY . /app
 RUN apt-get update && apt-get install -y python3-pip
 
 # Install required packages
-RUN pip3 install -f requirements.txt
+RUN pip3 install -r requirements.txt
 
 # Make port 8000 available to the world outside this container
 EXPOSE 8000
