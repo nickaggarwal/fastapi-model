@@ -20,10 +20,12 @@ class MockModel:
         self.loaded = True
         self.pipe = StableDiffusionPipeline.from_pretrained(
             "runwayml/stable-diffusion-v1-5",
+            use_safetensors=True
             torch_dtype=torch.float16,
             use_auth_token="False",
+            device_map="auto"
         )
-        self.pipe = self.pipe.to("cuda:0")
+
 
     def unload(self):
         self.loaded = False
@@ -43,7 +45,7 @@ class InferRequest(BaseModel):
 
 
 @app.get("/v2")
-def health_check():
+def version():
     return {"model-name": "stable-diffusion"}
 
 
@@ -53,7 +55,7 @@ def health_check():
 
 
 @app.get("/v2/health/ready")
-def health_check():
+def health_ready():
     return {"status": "running"}
 
 
