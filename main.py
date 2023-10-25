@@ -20,7 +20,7 @@ class MockModel:
         self.loaded = True
         self.pipe = StableDiffusionPipeline.from_pretrained(
             "runwayml/stable-diffusion-v1-5",
-            use_safetensors=True
+            use_safetensors=True,
             torch_dtype=torch.float16,
             use_auth_token="False",
             device_map="auto"
