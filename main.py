@@ -6,9 +6,7 @@ from diffusers import StableDiffusionPipeline
 import base64
 from pydantic import BaseModel
 
-
 app = FastAPI()
-
 
 # Mocking the model here
 class MockModel:
@@ -59,8 +57,11 @@ def health_ready():
     return {"status": "running"}
 
 
+@app.get("/v2/health/live")
+@app.get("/v2/health/ready")
 @app.get("/v2/models/stable-diffusion/ready")
 @app.get("/v2/models/stable-diffusion/versions/1/ready")
+@app.get("/v2/health/live")
 def health_check():
     return {"status": "running"}
 
