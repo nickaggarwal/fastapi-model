@@ -3,6 +3,7 @@ from io import BytesIO
 from PIL import Image, ImageDraw
 import torch
 from diffusers import StableDiffusionPipeline
+from transformers import Pipeline
 import base64
 from pydantic import BaseModel
 
