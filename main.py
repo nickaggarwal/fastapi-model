@@ -44,6 +44,7 @@ class InferRequest(BaseModel):
 
 
 @app.get("/v2")
+@app.get(f"/v2/models/stable-diffusion")
 def version():
     return {"model-name": "stable-diffusion"}
 
