@@ -1,4 +1,6 @@
 from fastapi import FastAPI, HTTPException
+import os
+os.environ['HF_HOME'] = "/data/models/hf_cache"
 from io import BytesIO
 from PIL import Image, ImageDraw
 import torch
@@ -6,6 +8,7 @@ from diffusers import StableDiffusionPipeline
 from transformers import Pipeline
 import base64
 from pydantic import BaseModel
+import time
 
 app = FastAPI()
 
@@ -18,11 +21,11 @@ class MockModel:
     def load(self):
         self.loaded = True
         self.pipe = StableDiffusionPipeline.from_pretrained(
-            "runwayml/stable-diffusion-v1-5",
+            "stabilityai/stable-diffusion-2-1",
             use_safetensors=True,
-            torch_dtype=torch.float16
+            torch_dtype=torch.float16,
+            device_map='balanced'
         )
-
 
     def unload(self):
         self.loaded = False
@@ -33,9 +36,10 @@ class MockModel:
         image = self.pipe(text).images[0]
         return image
 
-
+start = time.time()
 model = MockModel()
 model.load()
+print("Time taken" + str( time.time() - start) )
 
 class InferRequest(BaseModel):
     text: str
