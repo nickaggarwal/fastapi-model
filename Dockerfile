@@ -1,5 +1,5 @@
 # Use an official Python runtime as a parent image
-FROM nvidia/cuda:12.2.0-base-ubuntu20.04
+FROM nvidia/cuda:12.4.0-base-ubuntu22.04
 
 # Set the working directory in the container
 WORKDIR /app
@@ -9,11 +9,9 @@ RUN apt-get update && apt-get install -y python3-pip
 
 COPY ./requirements.txt requirements.txt
 
-RUN pip install accelerate
+RUN pip3 install -r requirements.txt
 
 COPY . /app
-
-RUN pip3 install -r requirements.txt
 
 # Make port 8000 available to the world outside this container
 EXPOSE 8080

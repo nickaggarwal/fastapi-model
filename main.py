@@ -18,7 +18,7 @@ class MockModel:
     def load(self):
         self.loaded = True
         self.pipe = StableDiffusionPipeline.from_pretrained(
-            "runwayml/stable-diffusion-v1-5",
+            "stabilityai/stable-diffusion-2-1",
             use_safetensors=True,
             torch_dtype=torch.float16
         )
