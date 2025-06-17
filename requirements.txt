@@ -1,9 +1,9 @@
-torch
+torch==2.7.0
 diffusers
-transformers==4.51.3
+transformers==4.52.3
 accelerate==1.6.0
 boto3==1.35.18
-hf-transfer
+hf-transfer==0.1.9
 huggingface-hub
 uvicorn
 fastapi
