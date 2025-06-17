@@ -6,8 +6,10 @@ from diffusers import StableDiffusionPipeline
 from transformers import Pipeline
 import base64
 from pydantic import BaseModel
-
+import os 
 app = FastAPI()
+
+os.env["HF_HOME"] = ""
 
 # Mocking the model here
 class MockModel:
